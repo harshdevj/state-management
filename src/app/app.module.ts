@@ -5,16 +5,27 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { RouterModule, Routes } from '@angular/router';
+
+import { appRoutes } from './app.route';
+
+import { ArtistsComponent } from './artists/artists.component';
+import { TracksComponent } from './tracks/tracks.component';
+
+import { ArtistService } from './artists/artists.service';
+import { TrackService } from './tracks/tracks.service';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, ArtistsComponent, TracksComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ArtistService, TrackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
