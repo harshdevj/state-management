@@ -21,6 +21,7 @@ export class ArtistsComponent implements OnDestroy {
     artists: Array<any> = [];
 
     constructor(private artistService: ArtistService) {
+        this.onArtistChange(artistService.term);
     }
 
     onArtistChange(value) {

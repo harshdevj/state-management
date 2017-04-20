@@ -18,6 +18,7 @@ export class TracksComponent implements OnDestroy {
     tracks: Array<any> = [];
 
     constructor(private trackService: TrackService) {
+        this.onTrackChange(trackService.term);
     }
 
     onTrackChange(value) {
