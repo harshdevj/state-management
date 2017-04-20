@@ -11,7 +11,7 @@ import 'rxjs/Rx';
         <table>
             <tr *ngFor="let a of artists">
                 <td>{{a.name}}</td>
-                <td><img src="{{a.images[2].url}}"></td>
+                <td *ngIf="a.images[2]"><img src="{{a.images[2].url}}"></td>
             </tr>
         </table>
     `
@@ -24,15 +24,18 @@ export class ArtistsComponent implements OnDestroy {
     }
 
     onArtistChange(value) {
-        this.artistService.getArtists()
-            .subscribe(resp => {
-                console.info('Response', resp);
-                if (resp && resp.artists.total > 0) {
-                    this.artists = resp.artists.items;
-                }
-            }, err => {
-                console.warn(err);
-            });
+        if (value) {
+            this.artistService.getArtists()
+                .subscribe(resp => {
+                    if (resp && resp.artists.total > 0) {
+                        this.artists = resp.artists.items;
+                    }
+                }, err => {
+                    console.warn(err);
+                });
+        } else {
+            this.artists = [];
+        }
     }
 
     ngOnDestroy() {

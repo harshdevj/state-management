@@ -19,10 +19,9 @@ export class TrackService {
         return this._term;
     }
 
-    getTracks(term) {
-        //this._term = term;
+    getTracks() {
         return this.http
-            .get('https://api.spotify.com/v1/search?q=' + term + '&type=tracks')
+            .get('https://api.spotify.com/v1/search?q=' + this._term + '&type=track')
             .map(response => response.json())
     }
 
